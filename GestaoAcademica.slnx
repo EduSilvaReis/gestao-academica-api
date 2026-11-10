@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GestaoAcademica.Api/GestaoAcademica.Api.csproj" />
+    <Project Path="src/GestaoAcademica.Application/GestaoAcademica.Application.csproj" />
+    <Project Path="src/GestaoAcademica.Domain/GestaoAcademica.Domain.csproj" />
+    <Project Path="src/GestaoAcademica.Infrastructure/GestaoAcademica.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/GestaoAcademica.IntegrationTests/GestaoAcademica.IntegrationTests.csproj" />
+    <Project Path="tests/GestaoAcademica.UnitTests/GestaoAcademica.UnitTests.csproj" />
+  </Folder>
+</Solution>
