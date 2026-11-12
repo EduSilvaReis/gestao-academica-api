@@ -8,6 +8,8 @@ namespace GestaoAcademica.Domain.Entities;
 public class Aluno : Entity
 {
     public const int NomeTamanhoMaximo = 150;
+    public const int EmailTamanhoMaximo = 254;
+    public const int RATamanhoMaximo = 20;
 
     public string Nome { get; private set; } = string.Empty;
     public string Email { get; private set; } = string.Empty;
@@ -20,8 +22,9 @@ public class Aluno : Entity
 
     public Aluno(string nome, string email, string ra, DateOnly dataNascimento)
     {
-        if (string.IsNullOrWhiteSpace(ra))
-            throw new DomainException("O RA é obrigatório.");
+        // depois
+        if (string.IsNullOrWhiteSpace(ra) || ra.Trim().Length > RATamanhoMaximo)
+            throw new DomainException($"O RA é obrigatório e deve ter no máximo {RATamanhoMaximo} caracteres.");
 
         if (dataNascimento > DateOnly.FromDateTime(DateTime.Today))
             throw new DomainException("A data de nascimento não pode estar no futuro.");
