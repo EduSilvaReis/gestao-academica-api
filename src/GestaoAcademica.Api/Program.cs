@@ -27,10 +27,19 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Precisa vir primeiro, para capturar exceções de tudo o que vem depois
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    // Swagger UI: interface no navegador que lê o /openapi/v1.json e permite testar os endpoints
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "Gestão Acadêmica API v1");
+        options.RoutePrefix = "swagger";   // disponível em /swagger
+    });
 }
 
 app.UseHttpsRedirection();
