@@ -1,9 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GestaoAcademica.Application.Alunos;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GestaoAcademica.Application;
 
-internal class DependencyInjection
+public static class DependencyInjection
 {
+    public static IServiceCollection AddApplication(this IServiceCollection services)
+    {
+        services.AddScoped<IAlunoService, AlunoService>();
+        return services;
+    }
 }
