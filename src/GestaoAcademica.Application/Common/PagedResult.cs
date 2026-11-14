@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace GestaoAcademica.Application.Common;
 
-namespace GestaoAcademica.Application.Common;
-
-internal class PagedResult
+public sealed record PagedResult<T>(
+    IReadOnlyList<T> Items,
+    int Page,
+    int PageSize,
+    int TotalCount)
 {
+    public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);
 }

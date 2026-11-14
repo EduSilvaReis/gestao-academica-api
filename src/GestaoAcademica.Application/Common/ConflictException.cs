@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace GestaoAcademica.Application.Common;
 
-namespace GestaoAcademica.Application.Common;
-
-internal class ConflictException
-{
-}
+public sealed class ConflictException(string message) : Exception(message);

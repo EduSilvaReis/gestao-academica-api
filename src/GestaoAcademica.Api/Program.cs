@@ -1,3 +1,4 @@
+using GestaoAcademica.Application;
 using GestaoAcademica.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("A connection string 'DefaultConnection' não foi configurada.");
 
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(connectionString);
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
