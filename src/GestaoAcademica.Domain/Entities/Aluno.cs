@@ -61,7 +61,9 @@ public class Aluno : Entity
 
     private void DefinirEmail(string email)
     {
-        if (string.IsNullOrWhiteSpace(email) || !MailAddress.TryCreate(email.Trim(), out _))
+        if (string.IsNullOrWhiteSpace(email)
+            || email.Trim().Length > EmailTamanhoMaximo
+            || !MailAddress.TryCreate(email.Trim(), out _))
             throw new DomainException("E-mail inválido.");
 
         Email = email.Trim().ToLowerInvariant();
