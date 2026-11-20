@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 using GestaoAcademica.Api.ErrorHandling;
 using GestaoAcademica.Application;
 using GestaoAcademica.Infrastructure;
@@ -8,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(o => o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 // AddProblemDetails: faz o ASP.NET usar o formato ProblemDetails também nos erros que ele mesmo gera (400, 404 de rota)
 builder.Services.AddProblemDetails();
