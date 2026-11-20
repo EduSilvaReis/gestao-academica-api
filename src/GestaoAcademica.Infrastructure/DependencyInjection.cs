@@ -1,4 +1,5 @@
 ﻿using GestaoAcademica.Application.Abstractions;
+using GestaoAcademica.Application.Notas;
 using GestaoAcademica.Infrastructure.Data;
 
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ public static class DependencyInjection
 
         // Quem pedir IAppDbContext recebe a MESMA instância do AppDbContext da requisição
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
+        services.AddScoped<INotaService, NotaService>();
 
         return services;
     }
