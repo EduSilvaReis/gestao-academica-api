@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 
 using GestaoAcademica.Api.ErrorHandling;
 using GestaoAcademica.Application;
+using GestaoAcademica.Application.Relatorios;
 using GestaoAcademica.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,9 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("A connection string 'DefaultConnection' não foi configurada.");
+
+// Liga a seção "Relatorio" do appsettings.json à classe RelatorioOptions
+builder.Services.Configure<RelatorioOptions>(builder.Configuration.GetSection(RelatorioOptions.Secao));
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(connectionString);
