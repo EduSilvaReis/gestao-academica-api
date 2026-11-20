@@ -11,11 +11,11 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, string connectionString)
     {
+        // O AppDbContext usando SQL Server com a connection string recebida
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-        // Quem pedir IAppDbContext recebe a MESMA instância do AppDbContext da requisição
+        // Quem pedir IAppDbContext recebe o mesmo AppDbContext da requisição
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
-        services.AddScoped<INotaService, NotaService>();
 
         return services;
     }
